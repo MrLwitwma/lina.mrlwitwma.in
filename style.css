@@ -1,0 +1,35 @@
+*{
+    font-family: "Great Vibes", cursive;
+}
+
+body{
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background: cornsilk;
+}
+
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+button{
+    height: 50px;
+    width: 100px;
+    border-radius: 20px;
+    background: black;
+    font-size: 24px;
+    font-weight: 900;
+    border: 2px solid white;
+    color: white;
+    transition: 0.3s ease-in-out;
+}
+button:active{
+    scale: 0.9;
+    background: white;
+    color: black;
+}
