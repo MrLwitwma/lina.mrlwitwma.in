@@ -1,55 +1,73 @@
-const text = document.getElementById('text');
-const yes = document.getElementById('yes');
-const no = document.getElementById('no');
-const body = document.body;
+// JS for uploading user input
+document.addEventListener('DOMContentLoaded', () => {
+    const chatDisplay = document.getElementById('chat');
+    const userInput = document.getElementById('user-input');
+    const sendButton = document.getElementById('send');
 
+    sendButton.addEventListener('click', sendMessage);
 
+    userInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            sendMessage();
+            event.preventDefault(); // Prevent the default form submission behavior
+        }
+    });
 
-function change_position(){
-    no.style.position = 'absolute';
-    total_height = window.innerHeight;
-    total_width = window.innerWidth;
-
-    var randomX = Math.random() * (total_width - no.offsetWidth);
-    var randomY = Math.random() * (total_height - no.offsetHeight);
-
-    no.style.left = randomX + 'px';
-    no.style.top = randomY + 'px';
-}
-
-
-let click = 0
-function said_no(){
-    if (click === 0){
-        text.textContent = 'Pleaseeeeeee';
-    } else if (click === 1){
-        text.textContent = 'Pleaseeeeeeeeeeeeeeeeeeee';
-    } else if (click === 2){
-        text.textContent = 'I will be sad if you say No again';
-    } else if (click === 3){
-        text.textContent = 'Its your last time!';
-    } else if (click == 4){
-        text.textContent = 'Oh Come on please!';
-        yes.textContent = 'Okay'
-    } else{
-        change_position()
+    function loading_message() {
+        const loaderDiv = document.createElement('div');
+        loaderDiv.classList.add('loader');
+        chatDisplay.appendChild(loaderDiv);
     }
-    click = click + 1
-}
-
-no.addEventListener('click', ()=>{
-    said_no();
-})
-yes.addEventListener('click', ()=>{
-    if (click<4){
-        text.textContent = 'Yayeee Lets Goooo 🥳'
-        no.style.display = 'none';
-    } else if (text.textContent === 'Finally 😭'){
-        setInterval(function(){
-            text.append('Finally 😭')
-        }, 10)
-    } else{
-        text.textContent = 'Finally 😭'
-        no.style.display = 'none';
+    
+    function loaded_message() {
+        const loaderDiv = chatDisplay.querySelector('.loader');
+        if (loaderDiv) {
+            chatDisplay.removeChild(loaderDiv);
+        }
     }
-})
+
+    async function sendMessage() {
+        const userMessage = userInput.value;
+        userInput.value = '';
+        if (userMessage.trim() !== '') {
+            // Display user message
+            displayMessage(`<b style="font-size:16px"> User </b><br>${escapeHTML(userMessage)}`, 'user');
+            loading_message();
+            // Send user message to the server
+            const response = await fetch('https://mrlwitwma.pythonanywhere.com/get_response', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: `user_input=${encodeURIComponent(userMessage)}`
+            });
+            // Parse AI response as JSON
+            const responseData = await response.json();
+        
+            // Display AI response
+            displayMessage(responseData.response, 'ai');
+            loaded_message()
+        }
+    }
+
+
+
+    function escapeHTML(html) {
+        const div = document.createElement('div');
+        div.textContent = html;
+        return div.innerHTML;
+    }
+
+    function scrollToBottom() {
+        chatDisplay.scrollTop = chatDisplay.scrollHeight;
+    }
+
+    function displayMessage(message, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add(sender);
+        messageDiv.innerHTML = message; // Allow HTML responses to work
+        chatDisplay.appendChild(messageDiv);
+
+        // Scroll to the bottom after adding a new message
+        scrollToBottom();
+        loaded_message();
+    }
+});
