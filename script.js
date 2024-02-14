@@ -17,12 +17,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const loaderDiv = document.createElement('div');
         loaderDiv.classList.add('loader');
         chatDisplay.appendChild(loaderDiv);
+        console.log('working')
     }
     
     function loaded_message() {
         const loaderDiv = chatDisplay.querySelector('.loader');
         if (loaderDiv) {
             chatDisplay.removeChild(loaderDiv);
+            console.log('working2')
         }
     }
 
