@@ -259,7 +259,7 @@
             const terms = document.getElementById('terms');
             const termsAccept = document.getElementById('accept-terms');
 
-            const termsRead = localStorage.getItem('showTerm');
+            const termsRead = localStorage.getItem('showTerms');
             let showTerm = termsRead ? JSON.parse(termsRead) : true;
             
             if (showTerm === true){
@@ -271,7 +271,7 @@
               showTerm = !showTerm; // Making sure to not show terms later!
               terms.style.display = 'none';
               document.getElementById('user-input').disabled = false;
-              localStorage.setItem('showTerm', JSON.stringify(showTerm)); // Store the preference
+              localStorage.setItem('showTerms', JSON.stringify(showTerm)); // Store the preference
             });
         });
     </script>
