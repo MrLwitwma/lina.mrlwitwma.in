@@ -1,12 +1,9 @@
-*{
-    font-family: Arial, sans-serif;
-}
-
 body{
     padding: 0;
     margin: 0;
     position: relative;
     outline: none;
+    font-family: Arial, sans-serif;
     transition: background-color 0.5s ease;
 }
 .light-body{
@@ -76,6 +73,47 @@ h1{
     background-color: #fff;
 }
 
+#terms{
+    width: 300px;
+    height: 250px;
+    padding: 15px;
+    border-radius: 20px;
+    background: #ddddddc0;
+    position: absolute;
+    display: none;
+    /* display: flex; */
+    flex-direction: column;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    box-shadow: 1px 1px 10px 1px grey;
+    color: #252525;
+    animation: all 0.5s;
+}
+#terms > h4{
+    text-align: center;
+}
+#terms > ul{
+    margin: 0;
+    margin-left: -10px;
+}
+#terms > div{
+    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+#terms button{
+    padding: 5px;
+    border-radius: 5px;
+    border: 2px solid grey;
+    font-weight: 1000;
+    cursor: pointer;
+}
+#terms button:active{
+    scale: 0.91;
+}
+
+
 .chat-container{
     display: flex;
     flex-direction: column;
@@ -120,6 +158,7 @@ h1{
         scale: 1;
     }
 }
+
 
 #popup{
     top: 0;

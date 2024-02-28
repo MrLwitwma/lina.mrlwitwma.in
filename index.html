@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="https://mrlwitwma.000webhostapp.com/img/lina.svg" type="image/x-icon">
+    <link rel="icon" href="lina.svg" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap">
     <link rel="stylesheet" href="style.css">
     <title>Lina(AI)</title>
     <meta property="og:title" content="Chat With Lina(AI)">
     <meta property="og:description" content="Lina is a chatbot model made to help users in their tasks.">
     <meta property="og:image" content="lina.svg?v=1">
-    <meta property="og:url" content="https://lina.mrlwitwma..com">
+    <meta property="og:url" content="https://lina.mrlwitwma.com">
     <!-- White, Grey , Green-->
     <!-- Black, grey , white -->
     <!-- Black White Green!!! -->
@@ -52,8 +52,22 @@
         font-size: 12px;
         line-height: 1.2;">Allow your chats to be stored in our system for better response and to improvement our model (Get Lina Premium to modify this settings)</p>
     </div>
+
+    <div id="terms">
+        <h4>Terms, Conditions and Cookies</h4>
+        <ul>
+            <li>Your Chat datas are being stored in our system for improving the model.</li>
+            <li>This website uses cookies to keep track of users Visiting the Website.</li>
+            <li>Resposes by Lina can be inaccurate! We don't take any responsibility of its wrong responses!</li>
+        </ul>
+        <div>
+            <button id="accept-terms" autofocus>Accept</button>
+        </div>
+    </div>
+
     <div class="chat-container">
         <div id="chat"></div>
+        <noscript>This Side Need to use JavaScript to work!</noscript>
     </div>
     <div id="popup">
         <button id="close">Close</button>
@@ -219,6 +233,47 @@
             }
         }, 500); // 500ms matches the duration of the transition
     });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded',()=>{
+            const terms = document.getElementById('terms');
+            const termsAccept = document.getElementById('accept-terms');
+
+            const termsRead = localStorage.getItem('showTerms');
+            let showTerm = termsRead ? JSON.parse(termsRead) : true;
+            
+            if (showTerm === true){
+                terms.style.display = 'flex';
+            }
+
+            termsAccept.addEventListener('click', () => {
+              showTerm = !showTerm; // Toggle the darkMode variable
+              terms.style.display = 'none';
+              localStorage.setItem('showTerm', JSON.stringify(darkMode)); // Store the preference
+            });
+        });
+    </script>
+    <script>
+        // JS for Showing or Hidding Terms, conditions and Cookies
+        document.addEventListener('DOMContentLoaded',()=>{
+            const terms = document.getElementById('terms');
+            const termsAccept = document.getElementById('accept-terms');
+
+            const termsRead = localStorage.getItem('showTerm');
+            let showTerm = termsRead ? JSON.parse(termsRead) : true;
+            
+            if (showTerm === true){
+                terms.style.display = 'flex';
+                document.getElementById('user-input').disabled = true;
+            }
+
+            termsAccept.addEventListener('click', () => {
+              showTerm = !showTerm; // Making sure to not show terms later!
+              terms.style.display = 'none';
+              document.getElementById('user-input').disabled = false;
+              localStorage.setItem('showTerm', JSON.stringify(showTerm)); // Store the preference
+            });
+        });
     </script>
     <script src="script.js"></script>
 </body>
