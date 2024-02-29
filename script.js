@@ -17,13 +17,13 @@ document.addEventListener('DOMContentLoaded', () => {
         loaderDiv.classList.add('loader');
         chatDisplay.appendChild(loaderDiv);
     }
-    
+
     function loaded_message() {
         const loaders = chatDisplay.querySelectorAll('.loader');
         loaders.forEach(loader => {
             loader.parentNode.removeChild(loader);
         });
-    }  
+    }
 
     async function sendMessage() {
         const userMessage = userInput.value;
