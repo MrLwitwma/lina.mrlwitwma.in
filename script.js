@@ -19,11 +19,11 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function loaded_message() {
-        const loaderDiv = chatDisplay.querySelector('.loader');
-        if (loaderDiv) {
-            chatDisplay.removeChild(loaderDiv);
-        }
-    }
+        const loaders = chatDisplay.querySelectorAll('.loader');
+        loaders.forEach(loader => {
+            loader.parentNode.removeChild(loader);
+        });
+    }  
 
     async function sendMessage() {
         const userMessage = userInput.value;
