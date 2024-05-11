@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" href="lina.svg" type="image/x-icon">
+    <link rel="icon" href="https://mrlwitwma.000webhostapp.com/img/lina.svg" type="image/x-icon">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Audiowide&display=swap">
-    <link rel="stylesheet" href="style.css">
     <title>Lina(AI)</title>
-    <meta property="og:title" content="Chat With Lina(AI)">
-    <meta property="og:description" content="Lina is a chatbot model made to help users in their tasks.">
-    <meta property="og:image" content="lina.svg?v=1">
-    <meta property="og:url" content="https://lina.mrlwitwma.com">
+    <meta property="og:title" content="Lina(AI)">
+    <meta property="og:description" content="Lina is a chatbot model made by MrLwitwma to help users in their tasks. Lina is capable of solving simple to complex mathematical problems in miliseconds.">
+    <meta property="og:image" content="/static/lina.svg?v=1">
+    <meta property="og:url" content="https://MrLwitwma.pythonanywhere.com">
     <!-- White, Grey , Green-->
     <!-- Black, grey , white -->
     <!-- Black White Green!!! -->
+    <link rel="stylesheet" href="/static/style.css">
 </head>
 <body class="dark-body">
     <div class="watermark" style="color:grey;">Lina</div>
@@ -25,7 +25,7 @@
             <span></span>
         </div>
         <h1>Lina</h1>
-        <img id="new-chat" style="height: 50%; margin-left: auto; margin-right: 20px; cursor: pointer; z-index: 1;" src="new-chat.svg" alt="">
+        <img id="new-chat" style="height: 50%; margin-left: auto; margin-right: 20px; cursor: pointer; z-index: 1;" src="/static/new-chat.svg" alt="">
     </header>
     <div id="settings-popup">
         <div style="display: flex;text-decoration: underline; user-select: none;">
@@ -77,11 +77,40 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100%;
-            color: black;" >Your Chats Will be Stored Here!</div>
+            color: black;
+            flex-direction: column;" >
+            <!-- Your Chats Will be Stored Here! -->
+                <h2>Latest Version (2.1):</h2>
+                <ul style="
+                font-size: 14px;
+                font-weight: bold;
+                color: #333;">
+                    <li>Can solve basic mathematical problems</li>
+                    <li>Can Find Binary of any Decimal Number</li>
+                    <li>Can respond to user if the input matches the saved data</li>
+                    <li>Can find percentage of values</li>
+                    <li>Dark and Light UI with Cleaner UI</li>
+                    <li>Links Provided are clickable</li>
+                    <li>Better PC experience</li>
+                    <li>Can Find Factorial of values (Limit 1500, to avoid crashes)</li>
+                    <li>Can convert any base value to decimal base value</li>
+                    <li>More Accurate responses to user</li>
+                    <li>Find factors of values</li>
+                    <li>Find largest and smallest prime factors</li>
+                    <li>One Base value to another Base value (xBase to yBase)</li>
+                    <li>Number to words</li>
+                    <li>Decimal to Roman Numeral</li>
+                    <li>Roman to decimals</li>
+                    <li>Find HCF of 2 values</li>
+                    <li>Find LCM of 2 values</li>
+                    <li>Find if a number is prime</li>
+                    <li>A sleek code display feature (Codes will be displayed in a box)</li>
+                    <li>Copy generated text</li>
+                </ul>
+            </div>
         </div>
         <button id="settings">Settings</button>
-        <span class="version" onclick="window.location.href='/updates'">Version:2.0 (01/03/2024)</span>
+        <span class="version" onclick="window.location.href='/updates'">Version:2.1 (12/05/2024)</span>
     </div>
     <footer class="light-footer">
         <div>
@@ -235,31 +264,12 @@
     });
     </script>
     <script>
-        document.addEventListener('DOMContentLoaded',()=>{
-            const terms = document.getElementById('terms');
-            const termsAccept = document.getElementById('accept-terms');
-
-            const termsRead = localStorage.getItem('showTerms');
-            let showTerm = termsRead ? JSON.parse(termsRead) : true;
-            
-            if (showTerm === true){
-                terms.style.display = 'flex';
-            }
-
-            termsAccept.addEventListener('click', () => {
-              showTerm = !showTerm; // Toggle the darkMode variable
-              terms.style.display = 'none';
-              localStorage.setItem('showTerm', JSON.stringify(darkMode)); // Store the preference
-            });
-        });
-    </script>
-    <script>
         // JS for Showing or Hidding Terms, conditions and Cookies
         document.addEventListener('DOMContentLoaded',()=>{
             const terms = document.getElementById('terms');
             const termsAccept = document.getElementById('accept-terms');
 
-            const termsRead = localStorage.getItem('showTerms');
+            const termsRead = localStorage.getItem('showTerm');
             let showTerm = termsRead ? JSON.parse(termsRead) : true;
             
             if (showTerm === true){
@@ -271,10 +281,11 @@
               showTerm = !showTerm; // Making sure to not show terms later!
               terms.style.display = 'none';
               document.getElementById('user-input').disabled = false;
-              localStorage.setItem('showTerms', JSON.stringify(showTerm)); // Store the preference
+              localStorage.setItem('showTerm', JSON.stringify(showTerm)); // Store the preference
             });
         });
     </script>
-    <script src="script.js"></script>
+    <script src="/static/script.js"></script>
+    <script src="/static/copy-code.js"></script>
 </body>
 </html>
