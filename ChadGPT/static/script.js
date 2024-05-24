@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const userId = getOrCreateUserId() + '(Chad-GPT)'; // Get or create user ID
             displayMessage(`<b style="font-size:16px"> User </b><br>${escapeHTML(userMessage)}`, 'user');
             loading_message();
-            const response = await fetch('https:/mrlwitwma.pythonanywhere.com/get_response', {
+            const response = await fetch('https://mrlwitwma.pythonanywhere.com/get_response', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                 body: `user_id=${userId}&user_input=${encodeURIComponent(userMessage)}`
