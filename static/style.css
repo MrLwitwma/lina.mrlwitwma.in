@@ -208,6 +208,10 @@ h1{
 .ai:hover > #bottom-options{
     opacity: 1;
 }
+.ai > img{
+    width: 50%;
+    margin: 0 25%;
+}
 
 
 #popup{
@@ -471,6 +475,10 @@ input[type="submit"]:hover{
     #settings-popup{
         font-size: 18px;
         height: 230px;
+    }
+    .ai > img{
+        width: 90%;
+        margin: 0 5%;
     }
 }
 @media (min-width:680px){
